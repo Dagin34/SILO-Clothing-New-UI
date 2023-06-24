@@ -28,36 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.FormPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.MinimizeButton = new Guna.UI.WinForms.GunaAdvenceButton();
-            this.MaximizeButton = new Guna.UI.WinForms.GunaAdvenceButton();
-            this.CloseButton = new Guna.UI.WinForms.GunaAdvenceButton();
             this.NavPanel = new System.Windows.Forms.Panel();
+            this.MainPanel = new System.Windows.Forms.Panel();
             this.OrderButton = new Guna.UI.WinForms.GunaAdvenceButton();
             this.SettingButton = new Guna.UI.WinForms.GunaAdvenceButton();
             this.ItemButton = new Guna.UI.WinForms.GunaAdvenceButton();
             this.CustomerButton = new Guna.UI.WinForms.GunaAdvenceButton();
             this.EmployeeButton = new Guna.UI.WinForms.GunaAdvenceButton();
             this.HomeButton = new Guna.UI.WinForms.GunaAdvenceButton();
-            this.MainPanel = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.MinimizeButton = new Guna.UI.WinForms.GunaAdvenceButton();
+            this.MaximizeButton = new Guna.UI.WinForms.GunaAdvenceButton();
+            this.CloseButton = new Guna.UI.WinForms.GunaAdvenceButton();
+            this.FormDragControl = new Guna.UI.WinForms.GunaDragControl(this.components);
+            this.FormPanel.SuspendLayout();
             this.NavPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // FormPanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.MinimizeButton);
-            this.panel1.Controls.Add(this.MaximizeButton);
-            this.panel1.Controls.Add(this.CloseButton);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(1, 1);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1449, 33);
-            this.panel1.TabIndex = 0;
+            this.FormPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.FormPanel.Controls.Add(this.label1);
+            this.FormPanel.Controls.Add(this.MinimizeButton);
+            this.FormPanel.Controls.Add(this.MaximizeButton);
+            this.FormPanel.Controls.Add(this.CloseButton);
+            this.FormPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.FormPanel.Location = new System.Drawing.Point(1, 1);
+            this.FormPanel.Name = "FormPanel";
+            this.FormPanel.Size = new System.Drawing.Size(1449, 33);
+            this.FormPanel.TabIndex = 0;
             // 
             // label1
             // 
@@ -70,102 +72,6 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Olis Knitting";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // MinimizeButton
-            // 
-            this.MinimizeButton.AnimationHoverSpeed = 0.07F;
-            this.MinimizeButton.AnimationSpeed = 0.03F;
-            this.MinimizeButton.BaseColor = System.Drawing.Color.Transparent;
-            this.MinimizeButton.BorderColor = System.Drawing.Color.Black;
-            this.MinimizeButton.CheckedBaseColor = System.Drawing.Color.Gray;
-            this.MinimizeButton.CheckedBorderColor = System.Drawing.Color.Black;
-            this.MinimizeButton.CheckedForeColor = System.Drawing.Color.White;
-            this.MinimizeButton.CheckedImage = ((System.Drawing.Image)(resources.GetObject("MinimizeButton.CheckedImage")));
-            this.MinimizeButton.CheckedLineColor = System.Drawing.Color.DimGray;
-            this.MinimizeButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.MinimizeButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.MinimizeButton.FocusedColor = System.Drawing.Color.Empty;
-            this.MinimizeButton.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.MinimizeButton.ForeColor = System.Drawing.Color.White;
-            this.MinimizeButton.Image = global::Olis_Knitting_New_UI.Properties.Resources.Minimize;
-            this.MinimizeButton.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.MinimizeButton.ImageSize = new System.Drawing.Size(20, 20);
-            this.MinimizeButton.LineColor = System.Drawing.Color.Transparent;
-            this.MinimizeButton.Location = new System.Drawing.Point(1329, 0);
-            this.MinimizeButton.Name = "MinimizeButton";
-            this.MinimizeButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.MinimizeButton.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.MinimizeButton.OnHoverForeColor = System.Drawing.Color.White;
-            this.MinimizeButton.OnHoverImage = global::Olis_Knitting_New_UI.Properties.Resources.Minimize;
-            this.MinimizeButton.OnHoverLineColor = System.Drawing.Color.Transparent;
-            this.MinimizeButton.OnPressedColor = System.Drawing.Color.Black;
-            this.MinimizeButton.Size = new System.Drawing.Size(40, 33);
-            this.MinimizeButton.TabIndex = 2;
-            this.MinimizeButton.Click += new System.EventHandler(this.MinimizeButton_Click);
-            // 
-            // MaximizeButton
-            // 
-            this.MaximizeButton.AnimationHoverSpeed = 0.07F;
-            this.MaximizeButton.AnimationSpeed = 0.03F;
-            this.MaximizeButton.BaseColor = System.Drawing.Color.Transparent;
-            this.MaximizeButton.BorderColor = System.Drawing.Color.Black;
-            this.MaximizeButton.CheckedBaseColor = System.Drawing.Color.Gray;
-            this.MaximizeButton.CheckedBorderColor = System.Drawing.Color.Black;
-            this.MaximizeButton.CheckedForeColor = System.Drawing.Color.White;
-            this.MaximizeButton.CheckedImage = ((System.Drawing.Image)(resources.GetObject("MaximizeButton.CheckedImage")));
-            this.MaximizeButton.CheckedLineColor = System.Drawing.Color.DimGray;
-            this.MaximizeButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.MaximizeButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.MaximizeButton.FocusedColor = System.Drawing.Color.Empty;
-            this.MaximizeButton.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.MaximizeButton.ForeColor = System.Drawing.Color.White;
-            this.MaximizeButton.Image = global::Olis_Knitting_New_UI.Properties.Resources.Maximize;
-            this.MaximizeButton.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.MaximizeButton.ImageSize = new System.Drawing.Size(17, 17);
-            this.MaximizeButton.LineColor = System.Drawing.Color.Transparent;
-            this.MaximizeButton.Location = new System.Drawing.Point(1369, 0);
-            this.MaximizeButton.Name = "MaximizeButton";
-            this.MaximizeButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.MaximizeButton.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.MaximizeButton.OnHoverForeColor = System.Drawing.Color.White;
-            this.MaximizeButton.OnHoverImage = global::Olis_Knitting_New_UI.Properties.Resources.Maximize;
-            this.MaximizeButton.OnHoverLineColor = System.Drawing.Color.Transparent;
-            this.MaximizeButton.OnPressedColor = System.Drawing.Color.Black;
-            this.MaximizeButton.Size = new System.Drawing.Size(40, 33);
-            this.MaximizeButton.TabIndex = 1;
-            this.MaximizeButton.Click += new System.EventHandler(this.MaximizeButton_Click);
-            // 
-            // CloseButton
-            // 
-            this.CloseButton.AnimationHoverSpeed = 0.07F;
-            this.CloseButton.AnimationSpeed = 0.03F;
-            this.CloseButton.BaseColor = System.Drawing.Color.Transparent;
-            this.CloseButton.BorderColor = System.Drawing.Color.Black;
-            this.CloseButton.CheckedBaseColor = System.Drawing.Color.Gray;
-            this.CloseButton.CheckedBorderColor = System.Drawing.Color.Black;
-            this.CloseButton.CheckedForeColor = System.Drawing.Color.White;
-            this.CloseButton.CheckedImage = ((System.Drawing.Image)(resources.GetObject("CloseButton.CheckedImage")));
-            this.CloseButton.CheckedLineColor = System.Drawing.Color.DimGray;
-            this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.CloseButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.CloseButton.FocusedColor = System.Drawing.Color.Empty;
-            this.CloseButton.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.CloseButton.ForeColor = System.Drawing.Color.White;
-            this.CloseButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseButton.Image")));
-            this.CloseButton.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.CloseButton.ImageSize = new System.Drawing.Size(20, 20);
-            this.CloseButton.LineColor = System.Drawing.Color.Transparent;
-            this.CloseButton.Location = new System.Drawing.Point(1409, 0);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CloseButton.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.CloseButton.OnHoverForeColor = System.Drawing.Color.White;
-            this.CloseButton.OnHoverImage = ((System.Drawing.Image)(resources.GetObject("CloseButton.OnHoverImage")));
-            this.CloseButton.OnHoverLineColor = System.Drawing.Color.Transparent;
-            this.CloseButton.OnPressedColor = System.Drawing.Color.Black;
-            this.CloseButton.Size = new System.Drawing.Size(40, 33);
-            this.CloseButton.TabIndex = 0;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // NavPanel
             // 
@@ -181,6 +87,15 @@
             this.NavPanel.Name = "NavPanel";
             this.NavPanel.Size = new System.Drawing.Size(200, 739);
             this.NavPanel.TabIndex = 1;
+            // 
+            // MainPanel
+            // 
+            this.MainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel.Location = new System.Drawing.Point(201, 34);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(1249, 739);
+            this.MainPanel.TabIndex = 2;
             // 
             // OrderButton
             // 
@@ -392,14 +307,105 @@
             this.HomeButton.TextOffsetX = 10;
             this.HomeButton.Click += new System.EventHandler(this.HomeButton_Click);
             // 
-            // MainPanel
+            // MinimizeButton
             // 
-            this.MainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
-            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(201, 34);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(1249, 739);
-            this.MainPanel.TabIndex = 2;
+            this.MinimizeButton.AnimationHoverSpeed = 0.07F;
+            this.MinimizeButton.AnimationSpeed = 0.03F;
+            this.MinimizeButton.BaseColor = System.Drawing.Color.Transparent;
+            this.MinimizeButton.BorderColor = System.Drawing.Color.Black;
+            this.MinimizeButton.CheckedBaseColor = System.Drawing.Color.Gray;
+            this.MinimizeButton.CheckedBorderColor = System.Drawing.Color.Black;
+            this.MinimizeButton.CheckedForeColor = System.Drawing.Color.White;
+            this.MinimizeButton.CheckedImage = ((System.Drawing.Image)(resources.GetObject("MinimizeButton.CheckedImage")));
+            this.MinimizeButton.CheckedLineColor = System.Drawing.Color.DimGray;
+            this.MinimizeButton.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.MinimizeButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.MinimizeButton.FocusedColor = System.Drawing.Color.Empty;
+            this.MinimizeButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.MinimizeButton.ForeColor = System.Drawing.Color.White;
+            this.MinimizeButton.Image = global::Olis_Knitting_New_UI.Properties.Resources.Minimize;
+            this.MinimizeButton.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.MinimizeButton.ImageSize = new System.Drawing.Size(20, 20);
+            this.MinimizeButton.LineColor = System.Drawing.Color.Transparent;
+            this.MinimizeButton.Location = new System.Drawing.Point(1329, 0);
+            this.MinimizeButton.Name = "MinimizeButton";
+            this.MinimizeButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.MinimizeButton.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.MinimizeButton.OnHoverForeColor = System.Drawing.Color.White;
+            this.MinimizeButton.OnHoverImage = global::Olis_Knitting_New_UI.Properties.Resources.Minimize;
+            this.MinimizeButton.OnHoverLineColor = System.Drawing.Color.Transparent;
+            this.MinimizeButton.OnPressedColor = System.Drawing.Color.Black;
+            this.MinimizeButton.Size = new System.Drawing.Size(40, 33);
+            this.MinimizeButton.TabIndex = 2;
+            this.MinimizeButton.Click += new System.EventHandler(this.MinimizeButton_Click);
+            // 
+            // MaximizeButton
+            // 
+            this.MaximizeButton.AnimationHoverSpeed = 0.07F;
+            this.MaximizeButton.AnimationSpeed = 0.03F;
+            this.MaximizeButton.BaseColor = System.Drawing.Color.Transparent;
+            this.MaximizeButton.BorderColor = System.Drawing.Color.Black;
+            this.MaximizeButton.CheckedBaseColor = System.Drawing.Color.Gray;
+            this.MaximizeButton.CheckedBorderColor = System.Drawing.Color.Black;
+            this.MaximizeButton.CheckedForeColor = System.Drawing.Color.White;
+            this.MaximizeButton.CheckedImage = ((System.Drawing.Image)(resources.GetObject("MaximizeButton.CheckedImage")));
+            this.MaximizeButton.CheckedLineColor = System.Drawing.Color.DimGray;
+            this.MaximizeButton.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.MaximizeButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.MaximizeButton.FocusedColor = System.Drawing.Color.Empty;
+            this.MaximizeButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.MaximizeButton.ForeColor = System.Drawing.Color.White;
+            this.MaximizeButton.Image = global::Olis_Knitting_New_UI.Properties.Resources.Maximize;
+            this.MaximizeButton.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.MaximizeButton.ImageSize = new System.Drawing.Size(17, 17);
+            this.MaximizeButton.LineColor = System.Drawing.Color.Transparent;
+            this.MaximizeButton.Location = new System.Drawing.Point(1369, 0);
+            this.MaximizeButton.Name = "MaximizeButton";
+            this.MaximizeButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.MaximizeButton.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.MaximizeButton.OnHoverForeColor = System.Drawing.Color.White;
+            this.MaximizeButton.OnHoverImage = global::Olis_Knitting_New_UI.Properties.Resources.Maximize;
+            this.MaximizeButton.OnHoverLineColor = System.Drawing.Color.Transparent;
+            this.MaximizeButton.OnPressedColor = System.Drawing.Color.Black;
+            this.MaximizeButton.Size = new System.Drawing.Size(40, 33);
+            this.MaximizeButton.TabIndex = 1;
+            this.MaximizeButton.Click += new System.EventHandler(this.MaximizeButton_Click);
+            // 
+            // CloseButton
+            // 
+            this.CloseButton.AnimationHoverSpeed = 0.07F;
+            this.CloseButton.AnimationSpeed = 0.03F;
+            this.CloseButton.BaseColor = System.Drawing.Color.Transparent;
+            this.CloseButton.BorderColor = System.Drawing.Color.Black;
+            this.CloseButton.CheckedBaseColor = System.Drawing.Color.Gray;
+            this.CloseButton.CheckedBorderColor = System.Drawing.Color.Black;
+            this.CloseButton.CheckedForeColor = System.Drawing.Color.White;
+            this.CloseButton.CheckedImage = ((System.Drawing.Image)(resources.GetObject("CloseButton.CheckedImage")));
+            this.CloseButton.CheckedLineColor = System.Drawing.Color.DimGray;
+            this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.CloseButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.CloseButton.FocusedColor = System.Drawing.Color.Empty;
+            this.CloseButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.CloseButton.ForeColor = System.Drawing.Color.White;
+            this.CloseButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseButton.Image")));
+            this.CloseButton.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.CloseButton.ImageSize = new System.Drawing.Size(20, 20);
+            this.CloseButton.LineColor = System.Drawing.Color.Transparent;
+            this.CloseButton.Location = new System.Drawing.Point(1409, 0);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CloseButton.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.CloseButton.OnHoverForeColor = System.Drawing.Color.White;
+            this.CloseButton.OnHoverImage = ((System.Drawing.Image)(resources.GetObject("CloseButton.OnHoverImage")));
+            this.CloseButton.OnHoverLineColor = System.Drawing.Color.Transparent;
+            this.CloseButton.OnPressedColor = System.Drawing.Color.Black;
+            this.CloseButton.Size = new System.Drawing.Size(40, 33);
+            this.CloseButton.TabIndex = 0;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
+            // FormDragControl
+            // 
+            this.FormDragControl.TargetControl = this.FormPanel;
             // 
             // Form1
             // 
@@ -409,7 +415,7 @@
             this.ClientSize = new System.Drawing.Size(1451, 774);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.NavPanel);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.FormPanel);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -419,8 +425,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.FormPanel.ResumeLayout(false);
+            this.FormPanel.PerformLayout();
             this.NavPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -428,7 +434,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel FormPanel;
         private Guna.UI.WinForms.GunaAdvenceButton CloseButton;
         private Guna.UI.WinForms.GunaAdvenceButton MinimizeButton;
         private Guna.UI.WinForms.GunaAdvenceButton MaximizeButton;
@@ -441,6 +447,7 @@
         private Guna.UI.WinForms.GunaAdvenceButton ItemButton;
         private Guna.UI.WinForms.GunaAdvenceButton SettingButton;
         private Guna.UI.WinForms.GunaAdvenceButton OrderButton;
+        private Guna.UI.WinForms.GunaDragControl FormDragControl;
     }
 }
 
