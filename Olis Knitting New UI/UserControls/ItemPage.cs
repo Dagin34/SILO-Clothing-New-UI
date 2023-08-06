@@ -283,5 +283,13 @@ namespace Olis_Knitting_New_UI.UserControls
             UpdateTable();
             Clear();
         }
+
+        private void txtSearch_MouseEnter(object sender, EventArgs e)
+        {
+            if (txtSearch.Text == "Search")
+            {
+                txtSearch.Text = "";
+            }
+        }
     }
 }

@@ -131,7 +131,7 @@ end
 
 go
 
-create or alter proc EmployeeByNumber
+create or alter proc EmployeeByNumber 
     @Number varchar(13)
 as
 begin

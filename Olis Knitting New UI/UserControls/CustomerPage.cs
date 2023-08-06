@@ -135,7 +135,7 @@ namespace Olis_Knitting_New_UI.UserControls
             txtFirstName.Focus();
         }
 
-        private void saveItem_Click(object sender, EventArgs e)
+        private void saveCustomer_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(txtFirstName.Text))
             {
@@ -172,7 +172,7 @@ namespace Olis_Knitting_New_UI.UserControls
             Clear();
         }
 
-        private void updateItem_Click(object sender, EventArgs e)
+        private void updateCustomer_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(txtId.Text))
             {
@@ -217,7 +217,7 @@ namespace Olis_Knitting_New_UI.UserControls
             Clear();
         }
 
-        private void deleteItem_Click(object sender, EventArgs e)
+        private void deleteDelete_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(txtId.Text))
             {
@@ -234,5 +234,13 @@ namespace Olis_Knitting_New_UI.UserControls
             UpdateTable();
             Clear();
         }
+
+        private void txtSearch_MouseEnter(object sender, EventArgs e)
+        {
+            if (txtSearch.Text == "Search")
+            {
+                txtSearch.Text = "";
+            }
+        } 
     }
 }

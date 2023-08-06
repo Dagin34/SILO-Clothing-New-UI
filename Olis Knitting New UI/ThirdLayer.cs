@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Olis_Knitting_New_UI
 {
@@ -15,6 +16,9 @@ namespace Olis_Knitting_New_UI
         //.. Global Variable Declaration
         SqlConnection con;
         string str = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\user\\Desktop\\Personal Documents\\Projects\\Olis v2\\Olis Knitting New UI\\Olis Knitting New UI\\OlisDatabase.mdf\";Integrated Security=True";
+
+
+
 
 
         //.. Items Manipulation ==================================================================================================================================
@@ -209,6 +213,11 @@ namespace Olis_Knitting_New_UI
             }
         }
 
+
+
+
+
+
         //.. Customer Manipulation ==================================================================================================================================
 
         public void insertCustomer(string firstname, string lastname, string number)
@@ -393,5 +402,195 @@ namespace Olis_Knitting_New_UI
             }
         }
 
+
+
+
+
+        //.. Employee Manipulation ==================================================================================================================================
+
+        public void insertEmployee(string firstname, string lastname, string number, int yarncount)
+        {
+            try
+            {
+                using (con = new SqlConnection(str))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("InsertEmployee", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@FirstName", firstname);
+                    cmd.Parameters.AddWithValue("@LastName", lastname);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", number);
+                    cmd.Parameters.AddWithValue("@YarnCount", yarncount);
+
+                    int changes = cmd.ExecuteNonQuery();
+                    if (changes > 0)
+                    {
+                        MessageBox.Show("Emplyee Saved Succesfully!", "Affected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    MessageBox.Show("Error saving Employee!", "Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Inserting: Exception");
+            }
+        }
+
+        public void updateEmployee(int id, string firstname, string lastname, string number, int yarncount)
+        {
+            try
+            {
+                using (con = new SqlConnection(str))
+                {
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand("updateEmployee", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@EmployeeId", id);
+                    cmd.Parameters.AddWithValue("@FirstName", firstname);
+                    cmd.Parameters.AddWithValue("@LastName", lastname);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", number);
+                    cmd.Parameters.AddWithValue("@YarnCount", yarncount);
+
+                    int changes = cmd.ExecuteNonQuery();
+                    if (changes > 0)
+                    {
+                        MessageBox.Show("Emplyee Updated Succesfully!", "Affected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    MessageBox.Show("Error updating Employee!", "Not Updated", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error updating: Exception");
+            }
+        }
+
+        public void deleteEmployee(int id)
+        {
+            try
+            {
+                using (con = new SqlConnection(str))
+                {
+                    con.Open();
+                    SqlCommand cmd1 = new SqlCommand("select FirstName from Employees where EmployeeId = " + id, con);
+                    string firstname = (string)cmd1.ExecuteScalar();
+
+                    cmd1 = new SqlCommand("select LastName from Employees where EmployeeId = " + id, con);
+                    string lastname = (string)cmd1.ExecuteScalar();
+
+                    SqlCommand cmd = new SqlCommand("deleteEmployee", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@EmployeeId", id);
+
+                    DialogResult dg = MessageBox.Show("Are you sure you want to PERMANENTLY DELETE Employee " + firstname + " " + lastname + "?", "Confirmation", MessageBoxButtons.YesNo);
+                    if (dg == DialogResult.Yes)
+                    {
+                        SqlDataAdapter da = new SqlDataAdapter("EmployeeExists", con);
+                        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                        da.SelectCommand.Parameters.AddWithValue("@EmpId", id);
+                        DataTable dt = new DataTable();
+
+                        da.Fill(dt);
+                        if (dt.Rows.Count > 0)
+                        {
+                            MessageBox.Show("This Employee is working on an Order so he/she can not be deleted", "Unauthorized Delete", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        int changes = cmd.ExecuteNonQuery();
+                        if (changes > 0)
+                        {
+                            MessageBox.Show("Emplyee Deleted Succesfully!", "Affected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                        MessageBox.Show("Error Deleting Employee!", "Not Updated", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Chosen not to delete!", "Not Affected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error updating: Exception");
+            }
+        }
+
+        //.. Employee GET Function ====================================
+
+        public DataSet GetAllEmployees()
+        {
+            using (con = new SqlConnection(str))
+            {
+                SqlDataAdapter da = new SqlDataAdapter("GetAllEmplopyee", con);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                DataSet ds = new DataSet();
+                da.Fill(ds, "All");
+                return ds;
+            }
+        }
+
+        public DataSet SearchEmployee (int byType, int yarn, string value)
+        {
+            if (byType == 0)    //.. Search Employees by their NAMES
+            {
+                using (con = new SqlConnection(str))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("EmployeeByName", con);
+                    da.SelectCommand.Parameters.AddWithValue("@NameChecker", value);
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "All");
+                    return ds;
+                }
+            }
+            else if (byType == 1)       //.. Search Employees by their YARN COUNT
+            {
+                using (con = new SqlConnection(str))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("EmployeeByYarnCount", con);
+                    da.SelectCommand.Parameters.AddWithValue("@YarnCount", yarn);
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "All");
+                    return ds;
+                }
+            }
+            else            //.. Search Employees by their NUMBER
+            {
+                using (con = new SqlConnection(str))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("EmployeeByNumber", con);
+                    da.SelectCommand.Parameters.AddWithValue("@Number", value);
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "All");
+                    return ds;
+                }
+            }
+        }
+
+        public int EmployeeCount()
+        {
+            try
+            {
+                using (con = new SqlConnection(str))
+                {
+                    con.Open();
+                    string query = "select count(EmployeeId) from Employees";
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    int count = (int)cmd.ExecuteScalar();
+                    return count;
+                }
+            }
+            catch (SqlException ex)
+            {
+                return -1;
+            }
+        }
     }
 }
