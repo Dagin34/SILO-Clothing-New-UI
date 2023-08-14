@@ -266,5 +266,15 @@ namespace Olis_Knitting_New_UI.UserControls
             UpdateTable();
             Clear();
         }
+
+        private void SearchBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtSearch.Focus();
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
     }
 }

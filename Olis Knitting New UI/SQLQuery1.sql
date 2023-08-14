@@ -160,7 +160,6 @@ end
 
 go
 
-
 create or alter proc updateEmployee
 	@EmployeeId int,
 	@FirstName varchar(40),
@@ -202,8 +201,6 @@ go
 go
 
 select * from Items
-
-
 
 go
 
@@ -307,10 +304,6 @@ end
 
 go
 
-
-
-go
-
 -- ============================ CUSTOMERS MANIPULATION ============================
 go
 
@@ -339,7 +332,6 @@ begin
 	select CustomerId, FirstName, LastName, PhoneNumber from Customers
 	where PhoneNumber like '%' + @Number + '%' 
 end
-
 
 go
   
@@ -382,7 +374,7 @@ end
 
 go
 
-create or alter proc CustomerExists 8
+create or alter proc CustomerExists
 	@CustId int
 as
 begin
@@ -390,9 +382,6 @@ begin
 end
 
 go
-
-
-
 
 -- ============================ ORDERS MANIPULATION ============================
 

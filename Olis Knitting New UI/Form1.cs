@@ -135,5 +135,9 @@ namespace Olis_Knitting_New_UI
             addUserControl(settingsPage);
         }
 
+        private void FormPanel_DoubleClick(object sender, EventArgs e)
+        {
+            MaximizeButton.PerformClick();
+        }
     }
 }

@@ -63,6 +63,7 @@
             this.ItemNo = new Guna.UI.WinForms.GunaLabel();
             this.ItemCount = new System.Windows.Forms.Timer(this.components);
             this.TableUpdater = new System.Windows.Forms.Timer(this.components);
+            this.ClearButton = new Guna.UI.WinForms.GunaAdvenceButton();
             this.panel1.SuspendLayout();
             this.gunaGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -121,6 +122,7 @@
             this.SearchBy.Size = new System.Drawing.Size(236, 40);
             this.SearchBy.StartIndex = 0;
             this.SearchBy.TabIndex = 4;
+            this.SearchBy.SelectedIndexChanged += new System.EventHandler(this.SearchBy_SelectedIndexChanged);
             // 
             // SearchButton
             // 
@@ -182,6 +184,7 @@
             this.gunaGroupBox1.BackColor = System.Drawing.Color.Transparent;
             this.gunaGroupBox1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.gunaGroupBox1.BorderColor = System.Drawing.Color.Gainsboro;
+            this.gunaGroupBox1.Controls.Add(this.ClearButton);
             this.gunaGroupBox1.Controls.Add(this.sizeCombo);
             this.gunaGroupBox1.Controls.Add(this.updateItem);
             this.gunaGroupBox1.Controls.Add(this.deleteItem);
@@ -205,7 +208,7 @@
             this.gunaGroupBox1.LineTop = 40;
             this.gunaGroupBox1.Location = new System.Drawing.Point(26, 83);
             this.gunaGroupBox1.Name = "gunaGroupBox1";
-            this.gunaGroupBox1.Size = new System.Drawing.Size(449, 452);
+            this.gunaGroupBox1.Size = new System.Drawing.Size(449, 477);
             this.gunaGroupBox1.TabIndex = 4;
             this.gunaGroupBox1.Text = "Add Items";
             this.gunaGroupBox1.TextLocation = new System.Drawing.Point(10, 8);
@@ -262,7 +265,7 @@
             this.updateItem.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.updateItem.ImageSize = new System.Drawing.Size(30, 30);
             this.updateItem.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
-            this.updateItem.Location = new System.Drawing.Point(237, 354);
+            this.updateItem.Location = new System.Drawing.Point(237, 386);
             this.updateItem.Name = "updateItem";
             this.updateItem.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.updateItem.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
@@ -297,7 +300,7 @@
             this.deleteItem.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.deleteItem.ImageSize = new System.Drawing.Size(30, 30);
             this.deleteItem.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
-            this.deleteItem.Location = new System.Drawing.Point(29, 398);
+            this.deleteItem.Location = new System.Drawing.Point(29, 430);
             this.deleteItem.Name = "deleteItem";
             this.deleteItem.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.deleteItem.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
@@ -332,7 +335,7 @@
             this.saveItem.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.saveItem.ImageSize = new System.Drawing.Size(30, 30);
             this.saveItem.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
-            this.saveItem.Location = new System.Drawing.Point(29, 354);
+            this.saveItem.Location = new System.Drawing.Point(29, 386);
             this.saveItem.Name = "saveItem";
             this.saveItem.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.saveItem.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
@@ -606,9 +609,9 @@
             // 
             this.gunaPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.gunaPanel1.Controls.Add(this.panel2);
-            this.gunaPanel1.Location = new System.Drawing.Point(26, 554);
+            this.gunaPanel1.Location = new System.Drawing.Point(26, 577);
             this.gunaPanel1.Name = "gunaPanel1";
-            this.gunaPanel1.Size = new System.Drawing.Size(449, 154);
+            this.gunaPanel1.Size = new System.Drawing.Size(449, 131);
             this.gunaPanel1.TabIndex = 6;
             // 
             // panel2
@@ -653,6 +656,40 @@
             // 
             this.TableUpdater.Interval = 3000;
             this.TableUpdater.Tick += new System.EventHandler(this.TableUpdater_Tick);
+            // 
+            // ClearButton
+            // 
+            this.ClearButton.AnimationHoverSpeed = 0.07F;
+            this.ClearButton.AnimationSpeed = 0.03F;
+            this.ClearButton.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.ClearButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.ClearButton.BorderSize = 1;
+            this.ClearButton.CheckedBaseColor = System.Drawing.Color.Gray;
+            this.ClearButton.CheckedBorderColor = System.Drawing.Color.Black;
+            this.ClearButton.CheckedForeColor = System.Drawing.Color.White;
+            this.ClearButton.CheckedImage = ((System.Drawing.Image)(resources.GetObject("ClearButton.CheckedImage")));
+            this.ClearButton.CheckedLineColor = System.Drawing.Color.DimGray;
+            this.ClearButton.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.ClearButton.FocusedColor = System.Drawing.Color.Empty;
+            this.ClearButton.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClearButton.ForeColor = System.Drawing.Color.LightGray;
+            this.ClearButton.Image = null;
+            this.ClearButton.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ClearButton.ImageSize = new System.Drawing.Size(30, 30);
+            this.ClearButton.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
+            this.ClearButton.Location = new System.Drawing.Point(333, 352);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.ClearButton.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.ClearButton.OnHoverForeColor = System.Drawing.Color.LightGray;
+            this.ClearButton.OnHoverImage = null;
+            this.ClearButton.OnHoverLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
+            this.ClearButton.OnPressedColor = System.Drawing.Color.Black;
+            this.ClearButton.Size = new System.Drawing.Size(97, 28);
+            this.ClearButton.TabIndex = 31;
+            this.ClearButton.Text = "Clear";
+            this.ClearButton.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // ItemPage
             // 
@@ -710,5 +747,6 @@
         private Guna.UI.WinForms.GunaLabel ItemNo;
         private System.Windows.Forms.Timer ItemCount;
         private System.Windows.Forms.Timer TableUpdater;
+        private Guna.UI.WinForms.GunaAdvenceButton ClearButton;
     }
 }

@@ -592,5 +592,390 @@ namespace Olis_Knitting_New_UI
                 return -1;
             }
         }
+
+
+
+
+        //.. Order Manipulation ==================================================================================================================================
+
+        public void insertOrder(int CustomerId, int ItemId, DateTime OrderDate, DateTime DeliveryDate, string Location, string Status, int Progress, string Paid, int Quantity)
+        {
+            try
+            {
+                using (con = new SqlConnection(str))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("insertOrder", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CustomerId", CustomerId);
+                    cmd.Parameters.AddWithValue("@ItemId", ItemId);
+                    cmd.Parameters.AddWithValue("@OrderDate", OrderDate);
+                    cmd.Parameters.AddWithValue("@DeliveryDate", DeliveryDate);
+                    cmd.Parameters.AddWithValue("@Location", Location);
+                    cmd.Parameters.AddWithValue("@Status", Status);
+                    cmd.Parameters.AddWithValue("@Progress", Progress);
+                    cmd.Parameters.AddWithValue("@Paid", Paid);
+                    cmd.Parameters.AddWithValue("@Quantity", Quantity);
+
+                    int changes = cmd.ExecuteNonQuery();
+                    if (changes > 0)
+                    {
+                        MessageBox.Show("Order Created Succesfully!", "Affected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    MessageBox.Show("Error Creating Order!", "Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Inserting: Exception");
+            }
+        }
+
+        public void updateOrder(int orderId, int CustomerId, int ItemId, DateTime OrderDate, DateTime DeliveryDate, string Location, string Status, int Progress, string Paid, int Quantity)
+        {
+            try
+            {
+                using (con = new SqlConnection(str))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("updateOrder", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@OrderId", orderId);
+                    cmd.Parameters.AddWithValue("@CustomerId", CustomerId);
+                    cmd.Parameters.AddWithValue("@ItemId", ItemId);
+                    cmd.Parameters.AddWithValue("@OrderDate", OrderDate);
+                    cmd.Parameters.AddWithValue("@DeliveryDate", DeliveryDate);
+                    cmd.Parameters.AddWithValue("@Location", Location);
+                    cmd.Parameters.AddWithValue("@Status", Status);
+                    cmd.Parameters.AddWithValue("@Progress", Progress);
+                    cmd.Parameters.AddWithValue("@Paid", Paid);
+                    cmd.Parameters.AddWithValue("@Quantity", Quantity);
+
+                    int changes = cmd.ExecuteNonQuery();
+                    if (changes > 0)
+                    {
+                        MessageBox.Show("Order Updated Succesfully!", "Affected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    MessageBox.Show("Error Updating Order!", "Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Updating: Exception");
+            }
+        }
+
+        public void deleteOrder(int id)
+        {
+            try
+            {
+                using (con = new SqlConnection(str))
+                {
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand("deleteOrder", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@OrderId", id);
+
+
+                    string itemName = getItemName(id);
+                    string name = getCustName(id);
+
+
+
+                    string message =
+                        "Are you sure you want to delete Item: " + itemName + " ordered by Customer: " +
+                        name + "?";
+
+                    DialogResult dg = MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo);
+                    if (dg == DialogResult.Yes)
+                    {
+                        int changes = cmd.ExecuteNonQuery();
+                        if (changes > 0)
+                        {
+                            MessageBox.Show("Order Deleted Succesfully!", "Affected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                        MessageBox.Show("Error Deleting Order!", "Not Updated", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Chosen not to delete the Order!", "Not Affected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error updating: Exception");
+            }
+        }
+
+        //.. Order GET Function ====================================
+
+        public DataSet GetAllOrders()
+        {
+            using (con = new SqlConnection(str))
+            {
+                SqlDataAdapter da = new SqlDataAdapter("AllOrders", con);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                DataSet ds = new DataSet();
+                da.Fill(ds, "All");
+                return ds;
+            }
+        }
+
+        public DataSet GetFilteredOrders(int type, string stat, int prog)
+        {
+            if (type == 0)
+            {
+                using (con = new SqlConnection(str))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("AllOrdersByStatusProgress", con);
+                    da.SelectCommand.Parameters.AddWithValue("@stat", stat);
+                    da.SelectCommand.Parameters.AddWithValue("@prog", prog);
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "All");
+                    return ds;
+                }
+            }
+            else if (type == 1)
+            {
+                using (con = new SqlConnection(str))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("AllOrdersByStatus", con);
+                    da.SelectCommand.Parameters.AddWithValue("@stat", stat);
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "All");
+                    return ds;
+                }
+            }
+            else
+            {
+                using (con = new SqlConnection(str))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("AllOrdersByProgress", con);
+                    da.SelectCommand.Parameters.AddWithValue("@prog", prog);
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "All");
+                    return ds;
+                }
+            }
+        }
+
+        public DataSet SearchOrder(bool isByName, string value)
+        {
+            if (isByName)
+            {
+                using (con = new SqlConnection(str))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("SearchOrderByCustomerName", con);
+                    da.SelectCommand.Parameters.AddWithValue("@NameChecker", value);
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "All");
+                    return ds;
+                }
+            }
+            else
+            {
+                using (con = new SqlConnection(str))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("SearchOrdersByItemType", con);
+                    da.SelectCommand.Parameters.AddWithValue("@Type", value);
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "All");
+                    return ds;
+                }
+            }
+        }
+
+        public int getCustomerId(string firstname, string lastname)
+        {
+            try
+            {
+                using (con = new SqlConnection(str))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("SendBackCustomerId", con);
+                    cmd.Parameters.AddWithValue("@firstname", firstname);
+                    cmd.Parameters.AddWithValue("@lastname", lastname);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    int id = (int)cmd.ExecuteScalar();
+                    return id;
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return -1;
+            }
+        }
+
+        public string getCustName(int id)
+        {
+            try
+            {
+                using (con = new SqlConnection(str))
+                {
+                    con.Open();
+                    //.. For Convinence 
+                    string getCustomerFirstName =
+                        "select C.FirstName from Orders as O " +
+                        "inner join Customers as C " +
+                        "   on O.CustomerId = C.CustomerId " +
+                        "where O.OrderId = " + id;
+
+                    string getCustomerLastName =
+                        "select C.LastName from Orders as O " +
+                        "inner join Customers as C " +
+                        "   on O.CustomerId = C.CustomerId " +
+                        "where O.OrderId = " + id;
+
+                    SqlCommand cmd1;
+                    cmd1 = new SqlCommand(getCustomerFirstName, con); //..Getting Customers FirstName
+                    string firstname = (string)cmd1.ExecuteScalar();
+
+                    SqlCommand cmd2;
+                    cmd2 = new SqlCommand(getCustomerLastName, con); //..Getting Customers LastName
+                    string lastname = (string)cmd2.ExecuteScalar();
+
+                    return firstname + " " + lastname;
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
+        public int getItemId(string type, string color, string size)
+        {
+            try
+            {
+                using (con = new SqlConnection(str))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("SendBackItemId", con);
+                    cmd.Parameters.AddWithValue("@type", type);
+                    cmd.Parameters.AddWithValue("@color", color);
+                    cmd.Parameters.AddWithValue("@size", size);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    int id = (int)cmd.ExecuteScalar();
+                    return id;
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return -1;
+            }
+        }
+
+        public string getItemName(int id)
+        {
+            try
+            {
+                using (con = new SqlConnection(str))
+                {
+                    con.Open();
+
+                    string getItemName =
+                        "select I.Name from Orders as O " +
+                        "inner join Items as I " +
+                        "   on O.ItemId = I.ItemId " +
+                        "where O.OrderId = " + id;
+
+                    SqlCommand cmd1;
+                    cmd1 = new SqlCommand(getItemName, con);         //..Getting the Item Ordered
+                    string itemName = (string)cmd1.ExecuteScalar();
+                    return itemName;
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
+        public string getItemSize(int id)
+        {
+            try
+            {
+                using (con = new SqlConnection(str))
+                {
+                    con.Open();
+
+                    string getItemName =
+                        "select I.Size from Orders as O " +
+                        "inner join Items as I " +
+                        "   on O.ItemId = I.ItemId " +
+                        "where O.OrderId = " + id;
+
+                    SqlCommand cmd1;
+                    cmd1 = new SqlCommand(getItemName, con);         //..Getting the Item Ordered
+                    string itemSize = (string)cmd1.ExecuteScalar();
+                    return itemSize;
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
+        public DateTime getOrderDate(int id)
+        {
+            try
+            {
+                using (con = new SqlConnection(str))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("select OrderDate from Orders where OrderId = @Id", con);
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.CommandType = CommandType.Text;
+
+                    DateTime date = (DateTime)cmd.ExecuteScalar();
+                    return date;
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return DateTime.Now;
+            }
+        }
+
+        public DateTime getDeliveryDate(int id)
+        {
+            try
+            {
+                using (con = new SqlConnection(str))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("select DeliveryDate from Orders where OrderId = @Id", con);
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.CommandType = CommandType.Text;
+
+                    DateTime date = (DateTime)cmd.ExecuteScalar();
+                    return date;
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return DateTime.Now;
+            }
+        }
     }
 }
