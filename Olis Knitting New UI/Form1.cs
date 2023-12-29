@@ -34,7 +34,7 @@ namespace Olis_Knitting_New_UI
         private void Form1_Load(object sender, EventArgs e)
         {
             HomeButton.Checked = true;
-            CustomerButton.PerformClick();
+            HomeButton.PerformClick();
         }
 
         private void CloseButton_Click(object sender, EventArgs e)

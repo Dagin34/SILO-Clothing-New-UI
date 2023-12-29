@@ -24,6 +24,7 @@ namespace Olis_Knitting_New_UI.UserControls
             CustomerCount.Start();
             TableUpdater.Start();
             UpdateTable();
+            tickTheTimer();
         }
 
         private void UpdateTable()
@@ -121,6 +122,11 @@ namespace Olis_Knitting_New_UI.UserControls
         }
 
         private void CustomerCount_Tick(object sender, EventArgs e)
+        {
+            tickTheTimer();
+        }
+
+        private void tickTheTimer()
         {
             ThirdLayer tl = new ThirdLayer();
             CustCount.Text = tl.CustomerCount().ToString();

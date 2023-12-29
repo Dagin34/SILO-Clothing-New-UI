@@ -15,13 +15,13 @@ namespace Olis_Knitting_New_UI
     {
         //.. Global Variable Declaration
         SqlConnection con;
-        string str = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\user\\Desktop\\Personal Documents\\Projects\\Olis v2\\Olis Knitting New UI\\Olis Knitting New UI\\OlisDatabase.mdf\";Integrated Security=True";
-
-
-
+        string str = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\user\\Desktop\\Personal Documents\\Extra Projects\\Olis v2\\Olis Knitting New UI\\Olis Knitting New UI\\OlisDatabase.mdf\";Integrated Security=True";
 
 
         //.. Items Manipulation ==================================================================================================================================
+
+        #region Items Manipulation
+
         public void insertItems(string name, string type, string color, string size, int quantity, int price)
         {
             try
@@ -145,6 +145,10 @@ namespace Olis_Knitting_New_UI
             }
         }
 
+        #endregion
+
+        #region Items GET Function
+
 
         //.. Items GET Function ====================================
 
@@ -213,12 +217,14 @@ namespace Olis_Knitting_New_UI
             }
         }
 
-
+        #endregion
 
 
 
 
         //.. Customer Manipulation ==================================================================================================================================
+
+        #region Customer Manipulation
 
         public void insertCustomer(string firstname, string lastname, string number)
         {
@@ -341,6 +347,10 @@ namespace Olis_Knitting_New_UI
             }
         }
 
+        #endregion
+
+        #region Customer GET Function
+
         //.. Customer GET Function ====================================
 
         public DataSet GetAllCustomers()
@@ -402,11 +412,14 @@ namespace Olis_Knitting_New_UI
             }
         }
 
+        #endregion
 
 
 
 
         //.. Employee Manipulation ==================================================================================================================================
+
+        #region Employee Manipulation
 
         public void insertEmployee(string firstname, string lastname, string number, int yarncount)
         {
@@ -520,6 +533,10 @@ namespace Olis_Knitting_New_UI
             }
         }
 
+        #endregion
+
+        #region Employee GET Function
+
         //.. Employee GET Function ====================================
 
         public DataSet GetAllEmployees()
@@ -593,10 +610,14 @@ namespace Olis_Knitting_New_UI
             }
         }
 
+        #endregion
+
 
 
 
         //.. Order Manipulation ==================================================================================================================================
+
+        #region Order Manipulation
 
         public void insertOrder(int CustomerId, int ItemId, DateTime OrderDate, DateTime DeliveryDate, string Location, string Status, int Progress, string Paid, int Quantity)
         {
@@ -711,6 +732,10 @@ namespace Olis_Knitting_New_UI
                 MessageBox.Show(ex.Message, "Error updating: Exception");
             }
         }
+
+        #endregion
+
+        #region Order GET Function
 
         //.. Order GET Function ====================================
 
@@ -977,5 +1002,182 @@ namespace Olis_Knitting_New_UI
                 return DateTime.Now;
             }
         }
+
+        #endregion
+
+
+
+
+        //.. Commission Manipulation ==================================================================================================================================
+
+        #region Commission Manipulation
+
+        public void insertCommission(int EmployeeId, int OrderId)
+        {
+            try
+            {
+                using (con = new SqlConnection(str))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("insertCommission", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@EmployeeId", EmployeeId);
+                    cmd.Parameters.AddWithValue("@OrderId", OrderId);
+
+                    int changes = cmd.ExecuteNonQuery();
+                    if (changes > 0)
+                    {
+                        MessageBox.Show("Employee Commission Created Succesfully!", "Affected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    MessageBox.Show("Error Creating Commission!", "Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Inserting: Exception");
+            }
+        }
+
+        public void updateCommission(int ComId, int EmployeeId, int OrderId)
+        {
+            try
+            {
+                using (con = new SqlConnection(str))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("updateCommission", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ComId", ComId);
+                    cmd.Parameters.AddWithValue("@EmployeeId", EmployeeId);
+                    cmd.Parameters.AddWithValue("@OrderId", OrderId);
+
+                    int changes = cmd.ExecuteNonQuery();
+                    if (changes > 0)
+                    {
+                        MessageBox.Show("Employee Commission Updated Succesfully!", "Affected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    MessageBox.Show("Error Updating Commission!", "Not Updated", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Inserting: Exception");
+            }
+        }
+
+        public void deleteCommission(int ComId, int EmployeeId, int OrderId)
+        {
+            try
+            {
+                using (con = new SqlConnection(str))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("deleteCommission", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ComId", ComId);
+
+                    SqlCommand cmd1 = new SqlCommand("select FirstName from Employees where EmployeeId = @EmployeeId", con);
+                    cmd1.Parameters.AddWithValue("@EmployeeId", EmployeeId);
+                    string firstname = (string)cmd1.ExecuteScalar();
+
+                    cmd1 = new SqlCommand("select LastName from Employees where EmployeeId = @EmployeeId", con);
+                    cmd1.Parameters.AddWithValue("@EmployeeId", EmployeeId);
+                    string lastname = (string)cmd1.ExecuteScalar();
+
+                    DialogResult dg = MessageBox.Show("" +
+                        "Are you sure you want to delete Employee " + firstname + " " + lastname + "'s commisison " +
+                        "on the Order: " + OrderId + "?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dg == DialogResult.Yes)
+                    {
+                        int changes = cmd.ExecuteNonQuery();
+                        if (changes > 0)
+                        {
+                            MessageBox.Show("Commission Deleted Succesfully!", "Affected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                        MessageBox.Show("Error Deleting Commission!", "Not Deleted", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Chosen not to delete the Commission!", "Not Affected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Error Deleting: Exception");
+            }
+        }
+
+        #endregion
+
+        #region Commission GET Function
+
+        //.. Commission GET Function ====================================
+
+
+        public DataSet GetAllCommissions()
+        {
+            using (con = new SqlConnection(str))
+            {
+                SqlDataAdapter da = new SqlDataAdapter("GetAllCommissions", con);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                DataSet ds = new DataSet();
+                da.Fill(ds, "All");
+                return ds;
+            }
+        }
+
+        public DataSet SearchCommission(int isByOrder, string value)
+        {
+            if (isByOrder == 0)
+            {
+                using (con = new SqlConnection(str))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("SearchCommissionByOrder", con);
+                    da.SelectCommand.Parameters.AddWithValue("@ItemName", value);
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "All");
+                    return ds;
+                }
+            }
+            else if (isByOrder == 1)
+            {
+                using (con = new SqlConnection(str))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("SearchCommissionByEmployee", con);
+                    da.SelectCommand.Parameters.AddWithValue("@EmployeeName", value);
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "All");
+                    return ds;
+                }
+            }
+            else if (isByOrder == 2)
+            {
+                using (con = new SqlConnection(str))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("SearchCommissionByCustomer", con);
+                    da.SelectCommand.Parameters.AddWithValue("@CustomerName", value);
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "All");
+                    return ds;
+                }
+            }
+            else
+            {
+                MessageBox.Show("There was a problem choosing the option to search", "Error Choosing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        #endregion
+
+
+
     }
 }

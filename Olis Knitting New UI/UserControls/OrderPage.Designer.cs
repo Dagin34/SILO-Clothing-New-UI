@@ -791,6 +791,8 @@
             this.dgvCustomers.AllowUserToResizeRows = false;
             dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.dgvCustomers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            this.dgvCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCustomers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCustomers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.dgvCustomers.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -995,8 +997,6 @@
             // 
             // statusChecker
             // 
-            this.statusChecker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.statusChecker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.statusChecker.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.statusChecker.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1056,6 +1056,7 @@
             this.progressChecker.StartIndex = 0;
             this.progressChecker.TabIndex = 26;
             this.progressChecker.SelectedIndexChanged += new System.EventHandler(this.progressChecker_SelectedIndexChanged);
+            this.progressChecker.SelectionChangeCommitted += new System.EventHandler(this.progressChecker_SelectionChangeCommitted);
             // 
             // RenameButton
             // 

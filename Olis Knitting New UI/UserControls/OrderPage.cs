@@ -117,7 +117,7 @@ namespace Olis_Knitting_New_UI.UserControls
 
         private void progressChecker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateTable();
+            
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
@@ -537,6 +537,11 @@ namespace Olis_Knitting_New_UI.UserControls
         private void ClearButton_Click(object sender, EventArgs e)
         {
             Clear();
+        }
+
+        private void progressChecker_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            UpdateTable();
         }
     }
 }

@@ -69,8 +69,8 @@ create table Commissions
 -- Some Fixes
 
 alter table Commissions
-add constraint uniqueForEmp
-    unique(EmployeeId)
+drop constraint uniqueForEmp					-- dropped the constraint (wasnt dropped in the previous versions)
+    --unique(EmployeeId)
 
 alter table Employees
 add PhoneNumber varchar(13) 
@@ -579,8 +579,8 @@ go
 create or alter proc GetAllCommissions
 as
 begin
-	select Co.ComId, O.OrderId, I.Name, C.FirstName as [Cust FirstName], C.LastName as [Cust LastName], E.EmployeeId, E.FirstName as [Emp FirstName],
-			E.LastName as [Emp LastName], Co.Commission
+	select Co.ComId as [Commission ID], O.OrderId as [Order ID], I.Name + ' to ' + C.FirstName + ' ' + C.LastName as [Order], E.EmployeeId, 
+		E.FirstName + ' ' + E.LastName as [Employee]
 	from Commissions as Co
 	inner join Orders as O
 		on O.OrderId = Co.OrderId
@@ -594,12 +594,72 @@ end
 
 go
 
+create or alter proc SearchCommissionByOrder 
+	@ItemName varchar(50)
+as
+begin
+	select Co.ComId as [Commission ID], O.OrderId as [Order ID], I.Name + ' to ' + C.FirstName + ' ' + C.LastName as [Order], E.EmployeeId, 
+		E.FirstName + ' ' + E.LastName as [Employee]
+	from Commissions as Co
+	inner join Orders as O
+		on O.OrderId = Co.OrderId
+	inner join Items as I
+		on O.ItemId = I.ItemId
+	inner join Customers as C
+		on C.CustomerId = O.CustomerId
+	inner join Employees as E
+		on E.EmployeeId = Co.EmployeeId
+	where I.Name like '%' + @ItemName + '%'
+end
+
+go
+
+create or alter proc SearchCommissionByEmployee
+	@EmployeeName varchar(50)
+as
+begin
+	select Co.ComId as [Commission ID], O.OrderId as [Order ID], I.Name + ' to ' + C.FirstName + ' ' + C.LastName as [Order], E.EmployeeId, 
+		E.FirstName + ' ' + E.LastName as [Employee]
+	from Commissions as Co
+	inner join Orders as O
+		on O.OrderId = Co.OrderId
+	inner join Items as I
+		on O.ItemId = I.ItemId
+	inner join Customers as C
+		on C.CustomerId = O.CustomerId
+	inner join Employees as E
+		on E.EmployeeId = Co.EmployeeId
+	where E.FirstName like '%' + @EmployeeName + '%' or E.LastName like '%' + @EmployeeName + '%'
+end
+
+go
+
+create or alter proc SearchCommissionByCustomer
+	@CustomerName varchar(50)
+as
+begin
+	select Co.ComId as [Commission ID], O.OrderId as [Order ID], I.Name + ' to ' + C.FirstName + ' ' + C.LastName as [Order], E.EmployeeId, 
+		E.FirstName + ' ' + E.LastName as [Employee]
+	from Commissions as Co
+	inner join Orders as O
+		on O.OrderId = Co.OrderId
+	inner join Items as I
+		on O.ItemId = I.ItemId
+	inner join Customers as C
+		on C.CustomerId = O.CustomerId
+	inner join Employees as E
+		on E.EmployeeId = Co.EmployeeId
+	where C.FirstName like '%' + @CustomerName + '%' or C.LastName like '%' + @CustomerName + '%'
+end
+
+go
+
 create or alter proc FilteredOrderByStatus
 	@StatusCheck varchar(10)
 as
 begin
-	select Co.ComId, O.OrderId, I.Name, C.FirstName as [Cust FirstName], C.LastName as [Cust LastName], E.EmployeeId, E.FirstName as [Emp FirstName],
-			E.LastName as [Emp LastName], Co.Commission
+	select Co.ComId as [Commission ID], O.OrderId as [Order ID], I.Name + ' to ' + C.FirstName + ' ' + C.LastName as [Order], E.EmployeeId, 
+		E.FirstName + ' ' + E.LastName as [Employee]
 	from Commissions as Co
 	inner join Orders as O
 		on O.OrderId = Co.OrderId
@@ -618,8 +678,8 @@ create or alter proc FilteredOrderByProgress
 	@ProgressCheck int
 as
 begin
-	select Co.ComId, O.OrderId, I.Name, C.FirstName as [Cust FirstName], C.LastName as [Cust LastName], E.EmployeeId, E.FirstName as [Emp FirstName],
-			E.LastName as [Emp LastName], Co.Commission
+	select Co.ComId as [Commission ID], O.OrderId as [Order ID], I.Name + ' to ' + C.FirstName + ' ' + C.LastName as [Order], E.EmployeeId, 
+		E.FirstName + ' ' + E.LastName as [Employee]
 	from Commissions as Co
 	inner join Orders as O
 		on O.OrderId = Co.OrderId
@@ -636,17 +696,16 @@ go
 
 create or alter proc insertCommission
 	@EmployeeId int,
-	@OrderId int,
-	@Commission int
+	@OrderId int
 as
 begin
 	DECLARE @ComId int
     SELECT @ComId = ISNULL(MAX(ComId), 0) + 1 FROM Commissions
 
 	IF NOT EXISTS (
-        SELECT * FROM Commissions WHERE EmployeeId = @EmployeeId AND OrderId = @OrderId AND Commission = @Commission
+        SELECT * FROM Commissions WHERE EmployeeId = @EmployeeId AND OrderId = @OrderId
     ) begin
-        INSERT INTO Commissions (ComId, EmployeeId, OrderId, Commission) VALUES (@ComId, @EmployeeId, @OrderId, @Commission);
+        INSERT INTO Commissions (ComId, EmployeeId, OrderId) VALUES (@ComId, @EmployeeId, @OrderId);
     END
 
 	--insert into Commissions values
@@ -658,12 +717,11 @@ go
 create or alter proc updateCommission
 	@ComId int,
 	@EmployeeId int,
-	@OrderId int,
-	@Commission int
+	@OrderId int
 as
 begin
 	update Commissions
-	set EmployeeId = @EmployeeId, OrderId = @OrderId, Commission = @Commission
+	set EmployeeId = @EmployeeId, OrderId = @OrderId
 	where  ComId = @ComId
 end
 
@@ -680,40 +738,40 @@ end
 
 -- ============================ DEMO DATA INSERTING ============================
 
-INSERT INTO Items (ItemId, Type, Color, Size, Quantity)
-VALUES
-  (1, 'Sweater', 'Red', 'M', 10),
-  (2, 'Scarf', 'Green', 'O/S', 5),
-  (3, 'Hat', 'Blue', 'S', 8),
-  (4, 'Gloves', 'Black', 'L', 3),
-  (5, 'Cardigan', 'Purple', 'M', 6),
-  (6, 'Beanie', 'Yellow', 'O/S', 4),
-  (7, 'Socks', 'Gray', 'L', 2);
+--INSERT INTO Items (ItemId, Type, Color, Size, Quantity)
+--VALUES
+--  (1, 'Sweater', 'Red', 'M', 10),
+--  (2, 'Scarf', 'Green', 'O/S', 5),
+--  (3, 'Hat', 'Blue', 'S', 8),
+--  (4, 'Gloves', 'Black', 'L', 3),
+--  (5, 'Cardigan', 'Purple', 'M', 6),
+--  (6, 'Beanie', 'Yellow', 'O/S', 4),
+--  (7, 'Socks', 'Gray', 'L', 2);
 
  
-INSERT INTO Employees (EmployeeId, FirstName, LastName, PhoneNumber, YarnCount)
-VALUES
-	(1, 'John', 'Doe', '+251912345678', 50),
-	(2, 'Jane', 'Doe', '+251712345678', 100),
-	(3, 'Bob', 'Smith', '+251912345679', 0),
-	(4, 'Alice', 'Johnson', '+251712345679', 75),
-	(5, 'David', 'Brown', '+251912345680', 0),
-	(6, 'Mary', 'Davis', '+251712345680', 25),
-	(7, 'Tom', 'Wilson', '+251912345681', 150),
-	(8, 'Sara', 'Taylor', '+251712345681', 0);
+--INSERT INTO Employees (EmployeeId, FirstName, LastName, PhoneNumber, YarnCount)
+--VALUES
+--	(1, 'John', 'Doe', '+251912345678', 50),
+--	(2, 'Jane', 'Doe', '+251712345678', 100),
+--	(3, 'Bob', 'Smith', '+251912345679', 0),
+--	(4, 'Alice', 'Johnson', '+251712345679', 75),
+--	(5, 'David', 'Brown', '+251912345680', 0),
+--	(6, 'Mary', 'Davis', '+251712345680', 25),
+--	(7, 'Tom', 'Wilson', '+251912345681', 150),
+--	(8, 'Sara', 'Taylor', '+251712345681', 0);
 
 	SELECT * FROM Commissions
 
-INSERT INTO Customers (CustomerId, FirstName, LastName, PhoneNumber)
-VALUES
-	(1, 'John', 'Doe', '+251912345678'),
-	(2, 'Jane', 'Doe', '+251712345678'),
-	(3, 'Bob', 'Smith', '+251912345679'),
-	(4, 'Alice', 'Johnson', '+251712345679'),
-	(5, 'David', 'Brown', '+251912345680'),
-	(6, 'Mary', 'Davis', '+251712345680'),
-	(7, 'Tom', 'Wilson', '+251912345681'),
-	(8, 'Sara', 'Taylor', '+251712345681');
+--INSERT INTO Customers (CustomerId, FirstName, LastName, PhoneNumber)
+--VALUES
+--	(1, 'John', 'Doe', '+251912345678'),
+--	(2, 'Jane', 'Doe', '+251712345678'),
+--	(3, 'Bob', 'Smith', '+251912345679'),
+--	(4, 'Alice', 'Johnson', '+251712345679'),
+--	(5, 'David', 'Brown', '+251912345680'),
+--	(6, 'Mary', 'Davis', '+251712345680'),
+--	(7, 'Tom', 'Wilson', '+251912345681'),
+--	(8, 'Sara', 'Taylor', '+251712345681');
 
 	select * from Orders
 
