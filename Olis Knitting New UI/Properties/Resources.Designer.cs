@@ -123,6 +123,16 @@ namespace Olis_Knitting_New_UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap IMG_20231229_232816_211 {
+            get {
+                object obj = ResourceManager.GetObject("IMG_20231229_232816_211", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Item {
             get {
                 object obj = ResourceManager.GetObject("Item", resourceCulture);

@@ -20,6 +20,14 @@ namespace Olis_Knitting_New_UI.UserControls
             InitializeComponent();
         }
 
+
+        //..
+
+        bool customerChoice = true;
+
+        //..
+
+
         private void OrderPage_Load(object sender, EventArgs e)
         {
             TableUpdater.Start();
@@ -31,8 +39,15 @@ namespace Olis_Knitting_New_UI.UserControls
         public void UpdateTable()
         {
             ThirdLayer tl = new ThirdLayer();
-            dgvCustomers.DataSource = tl.GetAllCustomers().Tables["All"];
-            dgvItems.DataSource = tl.GetAllItems().Tables["All"];
+
+            if (customerChoice)
+            {
+                dgvCustomers.DataSource = tl.GetAllCustomers().Tables["All"];
+            }
+            else
+            {
+                dgvCustomers.DataSource = tl.GetAllItems().Tables["All"];
+            }
             dgv.DataSource = tl.GetAllOrders().Tables["All"];
 
             int type;
@@ -146,7 +161,7 @@ namespace Olis_Knitting_New_UI.UserControls
                 string value = txtSearch.Text;
                 ThirdLayer tl = new ThirdLayer();
                 dgv.DataSource = tl.SearchOrder(false, value).Tables["All"];
-                dgvItems.DataSource = tl.SearchItem(0, value).Tables["All"];
+                dgvCustomers.DataSource = tl.SearchItem(0, value).Tables["All"];
             }
         }
 
@@ -194,27 +209,41 @@ namespace Olis_Knitting_New_UI.UserControls
             }
         }
 
-        private void dgvItems_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                txtItemId.Text = dgvItems.Rows[e.RowIndex].Cells[0].Value.ToString();
-            }
-            catch (System.ArgumentOutOfRangeException)
-            {
-                return;
-            }
-        }
+        //private void dgvItems_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+            //try
+            //{
+            //    txtItemId.Text = dgvItems.Rows[e.RowIndex].Cells[0].Value.ToString();
+            //}
+            //catch (System.ArgumentOutOfRangeException)
+            //{
+            //    return;
+            //}
+//}
 
-        private void dgvCustomers_CellClick(object sender, DataGridViewCellEventArgs e)
+private void dgvCustomers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
+            if (customerChoice)
             {
-                txtCustId.Text = dgvCustomers.Rows[e.RowIndex].Cells[0].Value.ToString();
+                try
+                {
+                    txtCustId.Text = dgvCustomers.Rows[e.RowIndex].Cells[0].Value.ToString();
+                }
+                catch (System.ArgumentOutOfRangeException)
+                {
+                    return;
+                }
             }
-            catch (System.ArgumentOutOfRangeException)
+            else
             {
-                return;
+                try
+                {
+                    txtItemId.Text = dgvCustomers.Rows[e.RowIndex].Cells[0].Value.ToString();
+                }
+                catch (System.ArgumentOutOfRangeException)
+                {
+                    return;
+                }
             }
         }
 
@@ -325,7 +354,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtCustId.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert CustomerId First", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtCustId.BorderColor = Color.FromArgb(43, 43, 43);
+                txtCustId.BorderColor = Color.FromArgb(17, 23, 26);
                 txtCustId.Focus();
                 return;
             }
@@ -333,7 +362,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtItemId.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert ItemId First", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtItemId.BorderColor = Color.FromArgb(43, 43, 43);
+                txtItemId.BorderColor = Color.FromArgb(17, 23, 26);
                 txtItemId.Focus();
                 return;
             }
@@ -341,7 +370,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtLocation.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert The location you are ordering to", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtLocation.BorderColor = Color.FromArgb(43, 43, 43);
+                txtLocation.BorderColor = Color.FromArgb(17, 23, 26);
                 txtLocation.Focus();
                 return;
             }
@@ -349,7 +378,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtQuantity.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert Quantity of the Order First", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtQuantity.BorderColor = Color.FromArgb(43, 43, 43);
+                txtQuantity.BorderColor = Color.FromArgb(17, 23, 26);
                 txtQuantity.Focus();
                 return;
             }
@@ -396,7 +425,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtOrderId.BorderColor = Color.Red;
                 MessageBox.Show("Please Choose the Order you want to edit.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtOrderId.BorderColor = Color.FromArgb(43, 43, 43);
+                txtOrderId.BorderColor = Color.FromArgb(17, 23, 26);
                 txtOrderId.Focus();
                 return;
             }
@@ -404,7 +433,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtCustId.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert CustomerId First", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtCustId.BorderColor = Color.FromArgb(43, 43, 43);
+                txtCustId.BorderColor = Color.FromArgb(17, 23, 26);
                 txtCustId.Focus();
                 return;
             }
@@ -412,7 +441,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtItemId.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert ItemId First", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtItemId.BorderColor = Color.FromArgb(43, 43, 43);
+                txtItemId.BorderColor = Color.FromArgb(17, 23, 26);
                 txtItemId.Focus();
                 return;
             }
@@ -420,7 +449,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtLocation.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert The location you are ordering to", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtLocation.BorderColor = Color.FromArgb(43, 43, 43);
+                txtLocation.BorderColor = Color.FromArgb(17, 23, 26);
                 txtLocation.Focus();
                 return;
             }
@@ -428,7 +457,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtQuantity.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert Quantity of the Order First", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtQuantity.BorderColor = Color.FromArgb(43, 43, 43);
+                txtQuantity.BorderColor = Color.FromArgb(17, 23, 26);
                 txtQuantity.Focus();
                 return;
             }
@@ -477,7 +506,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtOrderId.BorderColor = Color.Red;
                 MessageBox.Show("Please Choose the Order you want to delete.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtOrderId.BorderColor = Color.FromArgb(43, 43, 43);
+                txtOrderId.BorderColor = Color.FromArgb(17, 23, 26);
                 txtOrderId.Focus();
                 return;
             }
@@ -542,6 +571,37 @@ namespace Olis_Knitting_New_UI.UserControls
         private void progressChecker_SelectionChangeCommitted(object sender, EventArgs e)
         {
             UpdateTable();
+        }
+
+        private void chooseItem_Click(object sender, EventArgs e)
+        {
+            customerChoice = false;
+            UpdateTable();
+            choiceLabel.Text = "Items Table";
+        }
+
+        private void chooseCustomer_Click(object sender, EventArgs e)
+        {
+            customerChoice = true;
+            UpdateTable();
+            choiceLabel.Text = "Customers Table";
+        }
+
+        private void ContactLabel_Click(object sender, EventArgs e)
+        {
+            string contactInformation = "Name: Dagmawi Napoleon\nEmail: dagmawinapoleon02@gmail.com\nTelegram: @dagi_n34";
+            Clipboard.SetText(contactInformation);
+            MessageBox.Show("Contact Information Copied to Clipboard", "Thank You", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ContactLabel_MouseEnter(object sender, EventArgs e)
+        {
+            contactLabel.ForeColor = Color.FromArgb(175, 228, 255);
+        }
+
+        private void contactLabel_MouseLeave(object sender, EventArgs e)
+        {
+            contactLabel.ForeColor = Color.FromArgb(132, 172, 192);
         }
     }
 }

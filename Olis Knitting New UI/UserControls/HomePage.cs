@@ -23,7 +23,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 this.orderId.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert Order ID First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.orderId.BorderColor = Color.FromArgb(43, 43, 43);
+                this.orderId.BorderColor = Color.FromArgb(17, 23, 26);
                 this.orderId.Focus();
                 return;
             }
@@ -31,7 +31,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 this.employeeId.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert Employee ID First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.employeeId.BorderColor = Color.FromArgb(43, 43, 43);
+                this.employeeId.BorderColor = Color.FromArgb(17, 23, 26);
                 this.employeeId.Focus();
                 return;
             }
@@ -61,7 +61,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 CommissionId.BorderColor = Color.Red;
                 MessageBox.Show("Please Select Order First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                CommissionId.BorderColor = Color.FromArgb(43, 43, 43);
+                CommissionId.BorderColor = Color.FromArgb(17, 23, 26);
                 CommissionId.Focus();
                 return;
             }
@@ -69,7 +69,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 this.orderId.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert Order ID First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.orderId.BorderColor = Color.FromArgb(43, 43, 43);
+                this.orderId.BorderColor = Color.FromArgb(17, 23, 26);
                 this.orderId.Focus();
                 return;
             }
@@ -77,7 +77,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 this.employeeId.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert Employee ID First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.employeeId.BorderColor = Color.FromArgb(43, 43, 43);
+                this.employeeId.BorderColor = Color.FromArgb(17, 23, 26);
                 this.employeeId.Focus();
                 return;
             }
@@ -99,7 +99,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 CommissionId.BorderColor = Color.Red;
                 MessageBox.Show("Please Select Order First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                CommissionId.BorderColor = Color.FromArgb(43, 43, 43);
+                CommissionId.BorderColor = Color.FromArgb(17, 23, 26);
                 CommissionId.Focus();
                 return;
             }
@@ -107,7 +107,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 this.orderId.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert Order ID First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.orderId.BorderColor = Color.FromArgb(43, 43, 43);
+                this.orderId.BorderColor = Color.FromArgb(17, 23, 26);
                 this.orderId.Focus();
                 return;
             }
@@ -115,7 +115,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 this.employeeId.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert Employee ID First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.employeeId.BorderColor = Color.FromArgb(43, 43, 43);
+                this.employeeId.BorderColor = Color.FromArgb(17, 23, 26);
                 this.employeeId.Focus();
                 return;
             }
@@ -291,6 +291,26 @@ namespace Olis_Knitting_New_UI.UserControls
                 employeeId.Text = dgv2.Rows[e.RowIndex].Cells[0].Value.ToString();
                 returnBack.PerformClick();
             }
+        }
+
+
+
+
+        private void ContactLabel_Click(object sender, EventArgs e)
+        {
+            string contactInformation = "Name: Dagmawi Napoleon\nEmail: dagmawinapoleon02@gmail.com\nTelegram: @dagi_n34";
+            Clipboard.SetText(contactInformation);
+            MessageBox.Show("Contact Information Copied to Clipboard", "Thank You", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ContactLabel_MouseEnter(object sender, EventArgs e)
+        {
+            contactLabel.ForeColor = Color.FromArgb(175, 228, 255);
+        }
+
+        private void contactLabel_MouseLeave(object sender, EventArgs e)
+        {
+            contactLabel.ForeColor = Color.FromArgb(132, 172, 192);
         }
     }
 }

@@ -193,6 +193,7 @@
     <Content Include="OlisDatabase_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\IMG_20231229_232816_211.jpg" />
     <Content Include="SQLQuery1.sql" />
   </ItemGroup>
   <ItemGroup>

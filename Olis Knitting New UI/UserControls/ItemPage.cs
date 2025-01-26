@@ -27,6 +27,7 @@ namespace Olis_Knitting_New_UI.UserControls
             ItemCount.Start();
             TableUpdater.Start();
             UpdateTable();
+            tickTheTimer();
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
@@ -70,6 +71,11 @@ namespace Olis_Knitting_New_UI.UserControls
         }
 
         private void ItemCount_Tick(object sender, EventArgs e)
+        {
+            tickTheTimer();
+        }
+
+        private void tickTheTimer()
         {
             ThirdLayer tl = new ThirdLayer();
             ItemNo.Text = tl.ItemCount().ToString();
@@ -148,7 +154,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtName.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert Item Name First", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtName.BorderColor = Color.FromArgb(43, 43, 43);
+                txtName.BorderColor = Color.FromArgb(17, 23, 26);
                 txtName.Focus();
                 return;
             }
@@ -156,7 +162,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtType.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert Type of CLothing First", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtType.BorderColor = Color.FromArgb(43, 43, 43);
+                txtType.BorderColor = Color.FromArgb(17, 23, 26);
                 txtType.Focus();
                 return;
             }
@@ -164,7 +170,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtColor.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert Color First", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtColor.BorderColor = Color.FromArgb(43, 43, 43);
+                txtColor.BorderColor = Color.FromArgb(17, 23, 26);
                 txtColor.Focus();
                 return;
             }
@@ -172,7 +178,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 sizeCombo.BorderColor = Color.Red;
                 MessageBox.Show("Please choose Size First", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                sizeCombo.BorderColor = Color.FromArgb(43, 43, 43);
+                sizeCombo.BorderColor = Color.FromArgb(17, 23, 26);
                 sizeCombo.Focus();
                 return;
             }
@@ -180,7 +186,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtPrice.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert Price First", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtPrice.BorderColor = Color.FromArgb(43, 43, 43);
+                txtPrice.BorderColor = Color.FromArgb(17, 23, 26);
                 txtPrice.Focus();
                 return;
             }
@@ -206,46 +212,46 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtId.BorderColor = Color.Red;
                 MessageBox.Show("Please select the item you want to update from the table on the right.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtId.BorderColor = Color.FromArgb(43, 43, 43);
+                txtId.BorderColor = Color.FromArgb(17, 23, 26);
                 return;
             }
             if (String.IsNullOrEmpty(txtName.Text))
             {
                 txtName.BorderColor = Color.Red;
-                MessageBox.Show("Please Insert Item Name First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtName.BorderColor = Color.FromArgb(43, 43, 43);
+                MessageBox.Show("Please Insert Item Name First", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtName.BorderColor = Color.FromArgb(17, 23, 26);
                 txtName.Focus();
                 return;
             }
             if (String.IsNullOrEmpty(txtType.Text))
             {
                 txtType.BorderColor = Color.Red;
-                MessageBox.Show("Please Insert Type of CLothing First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtType.BorderColor = Color.FromArgb(43, 43, 43);
+                MessageBox.Show("Please Insert Type of CLothing First", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtType.BorderColor = Color.FromArgb(17, 23, 26);
                 txtType.Focus();
                 return;
             }
             if (String.IsNullOrEmpty(txtColor.Text))
             {
                 txtColor.BorderColor = Color.Red;
-                MessageBox.Show("Please Insert Color First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtColor.BorderColor = Color.FromArgb(43, 43, 43);
+                MessageBox.Show("Please Insert Color First", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtColor.BorderColor = Color.FromArgb(17, 23, 26);
                 txtColor.Focus();
                 return;
             }
             if (sizeCombo.SelectedIndex < 0)
             {
                 sizeCombo.BorderColor = Color.Red;
-                MessageBox.Show("Please choose Size First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                sizeCombo.BorderColor = Color.FromArgb(43, 43, 43);
+                MessageBox.Show("Please choose Size First", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                sizeCombo.BorderColor = Color.FromArgb(17, 23, 26);
                 sizeCombo.Focus();
                 return;
             }
             if (String.IsNullOrEmpty(txtPrice.Text))
             {
                 txtPrice.BorderColor = Color.Red;
-                MessageBox.Show("Please Insert Price First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtPrice.BorderColor = Color.FromArgb(43, 43, 43);
+                MessageBox.Show("Please Insert Price First", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPrice.BorderColor = Color.FromArgb(17, 23, 26);
                 txtPrice.Focus();
                 return;
             }
@@ -271,7 +277,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtId.BorderColor = Color.Red;
                 MessageBox.Show("Please select the item you want to delete from the table on the right.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtId.BorderColor = Color.FromArgb(43, 43, 43);
+                txtId.BorderColor = Color.FromArgb(17, 23, 26);
                 return;
             }
 
@@ -300,6 +306,23 @@ namespace Olis_Knitting_New_UI.UserControls
         private void ClearButton_Click(object sender, EventArgs e)
         {
             Clear();
+        }
+
+        private void ContactLabel_Click(object sender, EventArgs e)
+        {
+            string contactInformation = "Name: Dagmawi Napoleon\nEmail: dagmawinapoleon02@gmail.com\nTelegram: @dagi_n34";
+            Clipboard.SetText(contactInformation);
+            MessageBox.Show("Contact Information Copied to Clipboard", "Thank You", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ContactLabel_MouseEnter(object sender, EventArgs e)
+        {
+            contactLabel.ForeColor = Color.FromArgb(175, 228, 255);
+        }
+
+        private void contactLabel_MouseLeave(object sender, EventArgs e)
+        {
+            contactLabel.ForeColor = Color.FromArgb(132, 172, 192);
         }
     }
 }

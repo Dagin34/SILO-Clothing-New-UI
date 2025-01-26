@@ -131,8 +131,13 @@ namespace Olis_Knitting_New_UI
             ItemButton.ForeColor = Color.Gray;
             OrderButton.ForeColor = Color.Gray;
             SettingButton.ForeColor = Color.Silver;
-            SettingsPage settingsPage = new SettingsPage();
-            addUserControl(settingsPage);
+            DialogResult dg = MessageBox.Show("Are you sure you want to exit?","Exit",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            if (dg == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            else
+                SettingButton.BaseColor = Color.FromArgb(18, 24, 27);
         }
 
         private void FormPanel_DoubleClick(object sender, EventArgs e)

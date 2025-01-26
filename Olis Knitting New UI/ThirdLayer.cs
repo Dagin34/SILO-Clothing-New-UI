@@ -421,7 +421,7 @@ namespace Olis_Knitting_New_UI
 
         #region Employee Manipulation
 
-        public void insertEmployee(string firstname, string lastname, string number, int yarncount)
+        public void insertEmployee(string firstname, string lastname, string number, int yarncount, int salary)
         {
             try
             {
@@ -434,6 +434,7 @@ namespace Olis_Knitting_New_UI
                     cmd.Parameters.AddWithValue("@LastName", lastname);
                     cmd.Parameters.AddWithValue("@PhoneNumber", number);
                     cmd.Parameters.AddWithValue("@YarnCount", yarncount);
+                    cmd.Parameters.AddWithValue("@Salary", salary);
 
                     int changes = cmd.ExecuteNonQuery();
                     if (changes > 0)
@@ -450,7 +451,7 @@ namespace Olis_Knitting_New_UI
             }
         }
 
-        public void updateEmployee(int id, string firstname, string lastname, string number, int yarncount)
+        public void updateEmployee(int id, string firstname, string lastname, string number, int yarncount, int salary)
         {
             try
             {
@@ -465,6 +466,7 @@ namespace Olis_Knitting_New_UI
                     cmd.Parameters.AddWithValue("@LastName", lastname);
                     cmd.Parameters.AddWithValue("@PhoneNumber", number);
                     cmd.Parameters.AddWithValue("@YarnCount", yarncount);
+                    cmd.Parameters.AddWithValue("@Salary", salary);
 
                     int changes = cmd.ExecuteNonQuery();
                     if (changes > 0)

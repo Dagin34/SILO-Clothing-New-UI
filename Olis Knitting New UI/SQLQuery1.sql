@@ -10,6 +10,11 @@
 
 --
 
+alter table Employees 
+add Salary int default 0
+
+--
+
 create table Customers
 (
 	CustomerId int primary key,
@@ -113,7 +118,7 @@ create or alter proc EmployeeByName
     @NameChecker varchar(20)
 as
 begin
-    select EmployeeId, FirstName, LastName, PhoneNumber, YarnCount 
+    select EmployeeId, FirstName, LastName, PhoneNumber, YarnCount , Salary
     from Employees as E
     where E.FirstName like '%' + @NameChecker + '%' OR E.LastName like '%' + @NameChecker + '%'
 end
@@ -124,7 +129,7 @@ create or alter proc EmployeeByYarnCount
     @YarnCount int
 as
 begin
-    select EmployeeId, FirstName, LastName, PhoneNumber, YarnCount
+    select EmployeeId, FirstName, LastName, PhoneNumber, YarnCount, Salary
     from Employees as E
     where @YarnCount = YarnCount
 end
@@ -135,7 +140,7 @@ create or alter proc EmployeeByNumber
     @Number varchar(13)
 as
 begin
-    select EmployeeId, FirstName, LastName, PhoneNumber, YarnCount
+    select EmployeeId, FirstName, LastName, PhoneNumber, YarnCount, Salary
     from Employees as E
     where PhoneNumber like '%'+ @Number + '%'
 end
@@ -146,15 +151,16 @@ create or alter proc InsertEmployee
     @FirstName varchar(40),
     @LastName varchar(40),
     @PhoneNumber varchar(13),
-    @YarnCount int
+    @YarnCount int,
+	@Salary int
 as
 begin
     if @YarnCount >= 0
     begin
         DECLARE @EmployeeId int
         SELECT @EmployeeId = ISNULL(MAX(EmployeeId), 0) + 1 FROM Employees
-        INSERT INTO Employees (EmployeeId, FirstName, LastName, PhoneNumber, YarnCount)
-        VALUES (@EmployeeId, @FirstName, @LastName, @PhoneNumber, @YarnCount)
+        INSERT INTO Employees (EmployeeId, FirstName, LastName, PhoneNumber, YarnCount, Salary)
+        VALUES (@EmployeeId, @FirstName, @LastName, @PhoneNumber, @YarnCount, @Salary)
     end
 end
 
@@ -165,13 +171,14 @@ create or alter proc updateEmployee
 	@FirstName varchar(40),
 	@LastName varchar(40),
 	@PhoneNumber varchar(13),
-	@YarnCount int
+	@YarnCount int,
+	@Salary int
 as
 begin
 	if @YarnCount >= 0
 		begin
 		update Employees
-		set FirstName = @FirstName, LastName = @LastName, PhoneNumber = @PhoneNumber, YarnCount = @YarnCount
+		set FirstName = @FirstName, LastName = @LastName, PhoneNumber = @PhoneNumber, YarnCount = @YarnCount, Salary = @Salary
 		where EmployeeId = @EmployeeId
 	end
 end

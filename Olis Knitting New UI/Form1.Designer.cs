@@ -50,7 +50,7 @@
             // 
             // FormPanel
             // 
-            this.FormPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.FormPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(24)))), ((int)(((byte)(27)))));
             this.FormPanel.Controls.Add(this.label1);
             this.FormPanel.Controls.Add(this.MinimizeButton);
             this.FormPanel.Controls.Add(this.MaximizeButton);
@@ -67,7 +67,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Poppins", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label1.Location = new System.Drawing.Point(3, 4);
+            this.label1.Location = new System.Drawing.Point(39, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(101, 26);
             this.label1.TabIndex = 3;
@@ -96,7 +96,7 @@
             this.MinimizeButton.LineColor = System.Drawing.Color.Transparent;
             this.MinimizeButton.Location = new System.Drawing.Point(1329, 0);
             this.MinimizeButton.Name = "MinimizeButton";
-            this.MinimizeButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.MinimizeButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(40)))), ((int)(((byte)(44)))));
             this.MinimizeButton.OnHoverBorderColor = System.Drawing.Color.Black;
             this.MinimizeButton.OnHoverForeColor = System.Drawing.Color.White;
             this.MinimizeButton.OnHoverImage = global::Olis_Knitting_New_UI.Properties.Resources.Minimize;
@@ -128,7 +128,7 @@
             this.MaximizeButton.LineColor = System.Drawing.Color.Transparent;
             this.MaximizeButton.Location = new System.Drawing.Point(1369, 0);
             this.MaximizeButton.Name = "MaximizeButton";
-            this.MaximizeButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.MaximizeButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(40)))), ((int)(((byte)(44)))));
             this.MaximizeButton.OnHoverBorderColor = System.Drawing.Color.Black;
             this.MaximizeButton.OnHoverForeColor = System.Drawing.Color.White;
             this.MaximizeButton.OnHoverImage = global::Olis_Knitting_New_UI.Properties.Resources.Maximize;
@@ -172,7 +172,7 @@
             // 
             // NavPanel
             // 
-            this.NavPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.NavPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(24)))), ((int)(((byte)(27)))));
             this.NavPanel.Controls.Add(this.OrderButton);
             this.NavPanel.Controls.Add(this.SettingButton);
             this.NavPanel.Controls.Add(this.ItemButton);
@@ -193,7 +193,7 @@
             this.OrderButton.BaseColor = System.Drawing.Color.Transparent;
             this.OrderButton.BorderColor = System.Drawing.Color.Black;
             this.OrderButton.ButtonType = Guna.UI.WinForms.AdvenceButtonType.RadioButton;
-            this.OrderButton.CheckedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
+            this.OrderButton.CheckedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(36)))));
             this.OrderButton.CheckedBorderColor = System.Drawing.Color.Black;
             this.OrderButton.CheckedForeColor = System.Drawing.Color.White;
             this.OrderButton.CheckedImage = global::Olis_Knitting_New_UI.Properties.Resources.Order;
@@ -208,7 +208,7 @@
             this.OrderButton.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
             this.OrderButton.Location = new System.Drawing.Point(0, 631);
             this.OrderButton.Name = "OrderButton";
-            this.OrderButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.OrderButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(40)))), ((int)(((byte)(44)))));
             this.OrderButton.OnHoverBorderColor = System.Drawing.Color.Black;
             this.OrderButton.OnHoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.OrderButton.OnHoverImage = global::Olis_Knitting_New_UI.Properties.Resources.Order;
@@ -227,31 +227,30 @@
             this.SettingButton.BackColor = System.Drawing.Color.Transparent;
             this.SettingButton.BaseColor = System.Drawing.Color.Transparent;
             this.SettingButton.BorderColor = System.Drawing.Color.Black;
-            this.SettingButton.ButtonType = Guna.UI.WinForms.AdvenceButtonType.RadioButton;
-            this.SettingButton.CheckedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
+            this.SettingButton.CheckedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(36)))));
             this.SettingButton.CheckedBorderColor = System.Drawing.Color.Black;
             this.SettingButton.CheckedForeColor = System.Drawing.Color.White;
-            this.SettingButton.CheckedImage = global::Olis_Knitting_New_UI.Properties.Resources.Settings;
+            this.SettingButton.CheckedImage = ((System.Drawing.Image)(resources.GetObject("SettingButton.CheckedImage")));
             this.SettingButton.CheckedLineColor = System.Drawing.Color.DimGray;
             this.SettingButton.DialogResult = System.Windows.Forms.DialogResult.None;
             this.SettingButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.SettingButton.FocusedColor = System.Drawing.Color.Empty;
             this.SettingButton.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SettingButton.ForeColor = System.Drawing.Color.Silver;
-            this.SettingButton.Image = global::Olis_Knitting_New_UI.Properties.Resources.Settings;
-            this.SettingButton.ImageSize = new System.Drawing.Size(23, 23);
+            this.SettingButton.Image = ((System.Drawing.Image)(resources.GetObject("SettingButton.Image")));
+            this.SettingButton.ImageSize = new System.Drawing.Size(25, 25);
             this.SettingButton.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
             this.SettingButton.Location = new System.Drawing.Point(0, 685);
             this.SettingButton.Name = "SettingButton";
-            this.SettingButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.SettingButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(40)))), ((int)(((byte)(44)))));
             this.SettingButton.OnHoverBorderColor = System.Drawing.Color.Black;
             this.SettingButton.OnHoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.SettingButton.OnHoverImage = global::Olis_Knitting_New_UI.Properties.Resources.Settings;
+            this.SettingButton.OnHoverImage = ((System.Drawing.Image)(resources.GetObject("SettingButton.OnHoverImage")));
             this.SettingButton.OnHoverLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
             this.SettingButton.OnPressedColor = System.Drawing.Color.Black;
             this.SettingButton.Size = new System.Drawing.Size(200, 54);
             this.SettingButton.TabIndex = 4;
-            this.SettingButton.Text = "Settings";
+            this.SettingButton.Text = "Exit";
             this.SettingButton.TextOffsetX = 10;
             this.SettingButton.Click += new System.EventHandler(this.SettingButton_Click);
             // 
@@ -263,7 +262,7 @@
             this.ItemButton.BaseColor = System.Drawing.Color.Transparent;
             this.ItemButton.BorderColor = System.Drawing.Color.Black;
             this.ItemButton.ButtonType = Guna.UI.WinForms.AdvenceButtonType.RadioButton;
-            this.ItemButton.CheckedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
+            this.ItemButton.CheckedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(36)))));
             this.ItemButton.CheckedBorderColor = System.Drawing.Color.Black;
             this.ItemButton.CheckedForeColor = System.Drawing.Color.White;
             this.ItemButton.CheckedImage = global::Olis_Knitting_New_UI.Properties.Resources.Item;
@@ -278,7 +277,7 @@
             this.ItemButton.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
             this.ItemButton.Location = new System.Drawing.Point(0, 162);
             this.ItemButton.Name = "ItemButton";
-            this.ItemButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ItemButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(40)))), ((int)(((byte)(44)))));
             this.ItemButton.OnHoverBorderColor = System.Drawing.Color.Black;
             this.ItemButton.OnHoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ItemButton.OnHoverImage = global::Olis_Knitting_New_UI.Properties.Resources.Item;
@@ -298,7 +297,7 @@
             this.CustomerButton.BaseColor = System.Drawing.Color.Transparent;
             this.CustomerButton.BorderColor = System.Drawing.Color.Black;
             this.CustomerButton.ButtonType = Guna.UI.WinForms.AdvenceButtonType.RadioButton;
-            this.CustomerButton.CheckedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
+            this.CustomerButton.CheckedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(36)))));
             this.CustomerButton.CheckedBorderColor = System.Drawing.Color.Black;
             this.CustomerButton.CheckedForeColor = System.Drawing.Color.White;
             this.CustomerButton.CheckedImage = global::Olis_Knitting_New_UI.Properties.Resources.Customer;
@@ -313,7 +312,7 @@
             this.CustomerButton.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
             this.CustomerButton.Location = new System.Drawing.Point(0, 108);
             this.CustomerButton.Name = "CustomerButton";
-            this.CustomerButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CustomerButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(40)))), ((int)(((byte)(44)))));
             this.CustomerButton.OnHoverBorderColor = System.Drawing.Color.Black;
             this.CustomerButton.OnHoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.CustomerButton.OnHoverImage = global::Olis_Knitting_New_UI.Properties.Resources.Customer;
@@ -333,7 +332,7 @@
             this.EmployeeButton.BaseColor = System.Drawing.Color.Transparent;
             this.EmployeeButton.BorderColor = System.Drawing.Color.Black;
             this.EmployeeButton.ButtonType = Guna.UI.WinForms.AdvenceButtonType.RadioButton;
-            this.EmployeeButton.CheckedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
+            this.EmployeeButton.CheckedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(36)))));
             this.EmployeeButton.CheckedBorderColor = System.Drawing.Color.Black;
             this.EmployeeButton.CheckedForeColor = System.Drawing.Color.White;
             this.EmployeeButton.CheckedImage = global::Olis_Knitting_New_UI.Properties.Resources.Emps;
@@ -348,7 +347,7 @@
             this.EmployeeButton.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
             this.EmployeeButton.Location = new System.Drawing.Point(0, 54);
             this.EmployeeButton.Name = "EmployeeButton";
-            this.EmployeeButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.EmployeeButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(40)))), ((int)(((byte)(44)))));
             this.EmployeeButton.OnHoverBorderColor = System.Drawing.Color.Black;
             this.EmployeeButton.OnHoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.EmployeeButton.OnHoverImage = global::Olis_Knitting_New_UI.Properties.Resources.Emps;
@@ -368,7 +367,7 @@
             this.HomeButton.BaseColor = System.Drawing.Color.Transparent;
             this.HomeButton.BorderColor = System.Drawing.Color.Black;
             this.HomeButton.ButtonType = Guna.UI.WinForms.AdvenceButtonType.RadioButton;
-            this.HomeButton.CheckedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
+            this.HomeButton.CheckedBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(36)))));
             this.HomeButton.CheckedBorderColor = System.Drawing.Color.Black;
             this.HomeButton.CheckedForeColor = System.Drawing.Color.White;
             this.HomeButton.CheckedImage = ((System.Drawing.Image)(resources.GetObject("HomeButton.CheckedImage")));
@@ -383,7 +382,7 @@
             this.HomeButton.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(58)))), ((int)(((byte)(170)))));
             this.HomeButton.Location = new System.Drawing.Point(0, 0);
             this.HomeButton.Name = "HomeButton";
-            this.HomeButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.HomeButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(40)))), ((int)(((byte)(44)))));
             this.HomeButton.OnHoverBorderColor = System.Drawing.Color.Black;
             this.HomeButton.OnHoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.HomeButton.OnHoverImage = ((System.Drawing.Image)(resources.GetObject("HomeButton.OnHoverImage")));
@@ -419,6 +418,7 @@
             this.Controls.Add(this.FormPanel);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1379, 715);
             this.Name = "Form1";

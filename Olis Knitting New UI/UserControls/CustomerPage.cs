@@ -147,7 +147,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtFirstName.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert First Name First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtFirstName.BorderColor = Color.FromArgb(43, 43, 43);
+                txtFirstName.BorderColor = Color.FromArgb(17, 23, 26);
                 txtFirstName.Focus();
                 return;
             }
@@ -155,7 +155,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtLastName.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert Last Name First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtLastName.BorderColor = Color.FromArgb(43, 43, 43);
+                txtLastName.BorderColor = Color.FromArgb(17, 23, 26);
                 txtLastName.Focus();
                 return;
             }
@@ -163,7 +163,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtNumber.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert Phone Number First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtNumber.BorderColor = Color.FromArgb(43, 43, 43);
+                txtNumber.BorderColor = Color.FromArgb(17, 23, 26);
                 txtNumber.Focus();
                 return;
             }
@@ -184,14 +184,14 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtId.BorderColor = Color.Red;
                 MessageBox.Show("Please select the Customer you want to update from the table on the right.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtId.BorderColor = Color.FromArgb(43, 43, 43);
+                txtId.BorderColor = Color.FromArgb(17, 23, 26);
                 return;
             }
             if (String.IsNullOrEmpty(txtFirstName.Text))
             {
                 txtFirstName.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert First Name First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtFirstName.BorderColor = Color.FromArgb(43, 43, 43);
+                txtFirstName.BorderColor = Color.FromArgb(17, 23, 26);
                 txtFirstName.Focus();
                 return;
             }
@@ -199,7 +199,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtLastName.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert Last Name First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtLastName.BorderColor = Color.FromArgb(43, 43, 43);
+                txtLastName.BorderColor = Color.FromArgb(17, 23, 26);
                 txtLastName.Focus();
                 return;
             }
@@ -207,7 +207,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtNumber.BorderColor = Color.Red;
                 MessageBox.Show("Please Insert Phone Number First.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtNumber.BorderColor = Color.FromArgb(43, 43, 43);
+                txtNumber.BorderColor = Color.FromArgb(17, 23, 26);
                 txtNumber.Focus();
                 return;
             }
@@ -229,7 +229,7 @@ namespace Olis_Knitting_New_UI.UserControls
             {
                 txtId.BorderColor = Color.Red;
                 MessageBox.Show("Please select the Customer you want to update from the table on the right.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtId.BorderColor = Color.FromArgb(43, 43, 43);
+                txtId.BorderColor = Color.FromArgb(17, 23, 26);
                 return;
             }
 
@@ -257,6 +257,25 @@ namespace Olis_Knitting_New_UI.UserControls
         private void ClearButton_Click(object sender, EventArgs e)
         {
             Clear();
+        }
+
+
+
+        private void ContactLabel_Click(object sender, EventArgs e)
+        {
+            string contactInformation = "Name: Dagmawi Napoleon\nEmail: dagmawinapoleon02@gmail.com\nTelegram: @dagi_n34";
+            Clipboard.SetText(contactInformation);
+            MessageBox.Show("Contact Information Copied to Clipboard", "Thank You", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ContactLabel_MouseEnter(object sender, EventArgs e)
+        {
+            contactLabel.ForeColor = Color.FromArgb(175, 228, 255);
+        }
+
+        private void contactLabel_MouseLeave(object sender, EventArgs e)
+        {
+            contactLabel.ForeColor = Color.FromArgb(132, 172, 192);
         }
     }
 }
