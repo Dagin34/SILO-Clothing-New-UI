@@ -15,7 +15,7 @@ namespace Olis_Knitting_New_UI
     {
         //.. Global Variable Declaration
         SqlConnection con;
-        string str = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\user\\Desktop\\Personal Documents\\Extra Projects\\Olis v2\\Olis Knitting New UI\\Olis Knitting New UI\\OlisDatabase.mdf\";Integrated Security=True";
+        string str = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\OlisDatabase.mdf\";Integrated Security=True";
 
 
         //.. Items Manipulation ==================================================================================================================================
